@@ -9,3 +9,4 @@
 | compton.conf | ~/.config/compton.conf |
 | vimrc | ~/.vimrc |
 | zshrc | ~/.zshrc |
+| pacman.conf | /etc/pacman.conf |
