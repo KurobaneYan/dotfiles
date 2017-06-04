@@ -1,0 +1,4 @@
+unzip zip files with russian symbols:
+7z x filename.zip
+or
+env LANG=russian 7z x filename.zip
