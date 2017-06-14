@@ -10,3 +10,10 @@
 | vimrc | ~/.vimrc |
 | zshrc | ~/.zshrc |
 | pacman.conf | /etc/pacman.conf |
+| xmonad.hs | ~/.xmonad/xmonad.hs |
+| xmobarrc | ~/.xmonad/xmobarrc |
+
+## notes
+
+unzip a file
+7z x filename.zip
