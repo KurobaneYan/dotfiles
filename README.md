@@ -11,7 +11,6 @@
 | zshrc | ~/.zshrc |
 | pacman.conf | /etc/pacman.conf |
 | xmonad.hs | ~/.xmonad/xmonad.hs |
-| xmobarrc | ~/.xmonad/xmobarrc |
 
 ## notes
 
