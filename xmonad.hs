@@ -1,4 +1,5 @@
 import XMonad
+import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig ( additionalKeys, removeKeys )
 import System.Exit
@@ -15,6 +16,17 @@ myLayout = tiled ||| Mirror tiled ||| Full
 
 main = xmonad $ myConfig
 
+myWorkspaces = map show [1..9]
+myNumRow = [xK_ampersand
+           , xK_bracketleft
+           , xK_braceleft
+           , xK_braceright
+           , xK_parenleft
+           , xK_equal
+           , xK_asterisk
+           , xK_parenright
+           , xK_plus]
+
 myConfig = defaultConfig
     { terminal = "gnome-terminal"
     , modMask = mod4Mask
@@ -24,10 +36,15 @@ myConfig = defaultConfig
     , focusFollowsMouse = True
     , layoutHook = smartBorders $ layoutHook defaultConfig
     , handleEventHook = fullscreenEventHook
-    } `additionalKeys` myKeys `removeKeys` myRemoveKeys
+    , keys = \c -> myKeys c `M.union` (keys defaultConfig c)
+    } `removeKeys` myRemoveKeys
 
-myKeys =
-    [ ((mod4Mask,               xK_Return), spawn "gnome-terminal")
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys conf@(XConfig {modMask = modm}) =
+    M.fromList $ [((m.|. modm, k), windows $ f i)
+             | (i,k) <- zip (XMonad.workspaces conf) myNumRow
+             , (f,m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+ ++ [ ((mod4Mask,               xK_Return), spawn "gnome-terminal")
     , ((mod4Mask .|. shiftMask, xK_Return), windows W.swapMaster)
     , ((mod4Mask,               xK_slash ), sendMessage NextLayout)
     , ((mod4Mask .|. shiftMask, xK_slash ), sendMessage FirstLayout)
