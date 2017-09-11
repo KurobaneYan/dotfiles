@@ -14,5 +14,8 @@
 
 ## notes
 
-unzip a file
+unzip a file:
 7z x filename.zip
+
+ignore any Unicode fields:
+unzip -UU *.zip
