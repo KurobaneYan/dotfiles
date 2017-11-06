@@ -1,0 +1,39 @@
+set nocompatible
+filetype off
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+filetype plugin indent on
+
+syntax on
+colo seoul256
+
+set backup
+set swapfile
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+set history=300
+set number
+set cursorline
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set laststatus=2
+set autoindent
+set smartindent
+set colorcolumn=80
+
+let g:lightline = { 'colorscheme': 'seoul256' }
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+map <F3> :Goyo<CR>
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
