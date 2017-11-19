@@ -6,17 +6,20 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
 filetype plugin indent on
 
 syntax on
 colo seoul256
 
+" Temp folders
 set backup
 set swapfile
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
 set history=300
 set number
 set cursorline
@@ -29,11 +32,22 @@ set autoindent
 set smartindent
 set colorcolumn=80
 
-let g:lightline = { 'colorscheme': 'seoul256' }
+" Search down into subfolders
+" Provides tab-completion for all-related files
+set path+=**
 
+" Display all matching files when we tab complete
+set wildmenu
+
+" Highlight extra whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" Lightline config
+let g:lightline = { 'colorscheme': 'seoul256' }
+
+" Goyo config
 map <F3> :Goyo<CR>
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
